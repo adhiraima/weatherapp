@@ -6,13 +6,11 @@ import java.util.HashMap;
 
 public class ApplicationCache {
 
-    private transient final HashMap<String, JsonObject> appCache;
+    private transient final HashMap<String, JsonObject> appCache = new HashMap<String, JsonObject>();;
 
     private static ApplicationCache cache = null;
 
-    private ApplicationCache() {
-        appCache = new HashMap<String, JsonObject>();
-    }
+    private ApplicationCache() { }
 
     public static ApplicationCache getInstance() {
         if (cache == null) {
@@ -27,5 +25,9 @@ public class ApplicationCache {
 
     public JsonObject get(String key) {
         return appCache.get(key);
+    }
+
+    public boolean check(String key) {
+        return appCache.containsKey(key);
     }
 }
